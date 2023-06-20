@@ -14,7 +14,7 @@ import Seo from '../seo';
 import { replaceBackendWithFrontendUrl, sanitize } from '../../utils/miscellaneous';
 
 
-const Layout = ({children, headerFooter, seo, uri }) => {
+const Layout = ({children, headerFooter, seo, uri, showHeader=false }) => {
 	const { header, footer } = headerFooter || {};
 	const yoastSchema = seo?.schema ? replaceBackendWithFrontendUrl( JSON.stringify( seo.schema ) ) : null;
 
@@ -35,10 +35,10 @@ const Layout = ({children, headerFooter, seo, uri }) => {
 							<title>{ header?.siteTitle ?? 'Nexts WooCommerce' }</title>
 					}
 				</Head>
-				<Header header={header}/>
 				<main className="flex min-w-100vw">
 					{children}
 				</main>
+				{ showHeader ? <Header header={header}/> : "" }
 			</div>
 		</AppProvider>
 	)

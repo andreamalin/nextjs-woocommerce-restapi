@@ -81,9 +81,118 @@
     padding: 2vw;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     border-radius: 3vw;
-    margin-bottom: 3vw;
+    margin: 0 2vw 3vw 2vw;
 }
 
 .max-h-75vh {
     max-height: 80vh;
+}
+
+
+.banner-cart {
+    background-color: #1B2D6B;
+    font-weight: bold;
+    font-size: 5vw;
+    color: white;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.content-wrap-cart {
+    width: 100%;
+}
+
+.cart-items-layout {
+    height: 80vh;
+    overflow-y: scroll;
+    .description-container {
+        height: 70%;
+        margin: auto 0;
+    }
+    img {
+        width: 3.5vw;
+        height: 3.5vw;
+    }
+
+    .cart-total-price {
+        font-size: 2vw;
+        font-weight: bolder;
+    }
+
+    .cart-right-col {
+        display: grid;
+    }
+
+    .cart-product-title {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .cart-product-footer {
+        display: flex;
+        align-items: center;
+        
+        p {
+            margin: 0 1vw;
+            font-size: 2vw;
+        }
+    }
+    .cart-layout {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+.cart-bottom-layout {
+    // border-top: 0.4vw solid #1B2D6B;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4vw;
+
+    .total-price {
+        font-size: 3vw;
+        font-weight: bolder;
+    }
+
+    .buttons-cart-footer {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .proceed-to-checkout {
+        background-color: #2189FF;
+        color: white;
+        font-weight: bolder;
+        text-transform: uppercase;
+        
+        border-radius: 2vw;
+        padding: 2vw 6vw;    
+        font-size: 2vw;
+    }
+
+    .outline-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-right: 3vw;
+
+        button {
+            border: 0.2vw solid #2189FF;
+            border-radius: 1vw;
+            padding: 1vw 5vw;
+            color: #2189FF;
+            font-size: 1.5vw;
+
+            &:last-child {
+                margin-top: 2vw;
+            }
+        }
+    }
 }

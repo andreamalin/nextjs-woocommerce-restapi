@@ -24,10 +24,13 @@ export default function Home({ headerFooter, products, categories }) {
 		},
 	}
 	return (
-		<Layout headerFooter={ headerFooter || {} } seo={ seo }>
+		<>
+		<div className="samsung-banner" />
+		<Layout showHeader headerFooter={ headerFooter || {} } seo={ seo }>
 			<VerticalNavbar categories={categories} />
 			<Products products={products} />
 		</Layout>
+		</>
 	)
 }
 
