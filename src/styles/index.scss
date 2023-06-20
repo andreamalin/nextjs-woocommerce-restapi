@@ -64,3 +64,26 @@
         font-weight: bolder;
     }
 }
+
+.cart-button {
+    background-color: #2189FF;
+    color: white;
+    font-weight: bold;
+    padding: 1vw 3vw;
+    border-radius: 3vw;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2vw;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius: 3vw;
+    margin-bottom: 3vw;
+}
+
+.max-h-75vh {
+    max-height: 80vh;
+}

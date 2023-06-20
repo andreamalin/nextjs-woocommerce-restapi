@@ -39,7 +39,6 @@ const Layout = ({children, headerFooter, seo, uri }) => {
 				<main className="flex min-w-100vw">
 					{children}
 				</main>
-				<Footer footer={footer}/>
 			</div>
 		</AppProvider>
 	)

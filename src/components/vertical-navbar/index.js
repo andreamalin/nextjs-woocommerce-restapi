@@ -9,7 +9,7 @@ const VerticalNavbar = ({ categories }) => {
 	}
 
 	return (
-		<div className="flex flex-col h-screen flex-shrink-0 flex-grow-0 w-1/5 vertical-nav-bg">
+		<div className="flex flex-col h-screen flex-shrink-0 flex-grow-0 w-1/5 vertical-nav-bg max-h-75vh">
 			
 			{ categories.length ? categories.map( category => {
 				return (

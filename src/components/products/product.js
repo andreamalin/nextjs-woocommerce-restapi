@@ -15,7 +15,7 @@ const Product = ( { product } ) => {
 	const productType = product?.type ?? '';
 	
 	return (
-		<div className="mt-4 mb-8 px-3 w-full overflow-hidden sm:w-1/2 md:w-1/3 xl:w-1/4">
+		<div className="product-card">
 			<Link href={ `/product/${ product?.slug }`} >
 				<a>
 					<Image

@@ -8,7 +8,7 @@ const Products = ({ products }) => {
 	}
 	
 	return (
-		<div className="flex flex-wrap -mx-3 overflow-hidden flex-shrink-0 flex-grow-0 w-4/5">
+		<div className="flex justify-evenly max-h-75vh flex-wrap flex-shrink-0 flex-grow-0 w-4/5 overflow-y-scroll">
 			
 			{ products.length ? products.map( product => {
 				return (
