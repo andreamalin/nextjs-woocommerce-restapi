@@ -39,6 +39,7 @@
 
 .vertical-nav-bg {
     background-color: #1B2D6B;
+    min-height: 80vh;
   }
 
 .tab {
@@ -74,6 +75,7 @@
 }
 
 .product-card {
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -81,11 +83,16 @@
     padding: 2vw;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     border-radius: 3vw;
-    margin: 0 2vw 3vw 2vw;
+    margin: 3vw 2vw 0 2vw;
+    
+    &:last-child {
+        margin: 3vw 2vw 3vw 2vw;
+    }
 }
 
 .max-h-75vh {
     max-height: 80vh;
+    height: fit-content;
 }
 
 
@@ -148,8 +155,8 @@
 }
 
 .cart-bottom-layout {
-    // border-top: 0.4vw solid #1B2D6B;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border-top: 0.4vw solid #1B2D6B;
+    // box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     height: 10vh;
     display: flex;
     justify-content: space-between;

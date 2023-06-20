@@ -1,8 +1,14 @@
 import { isArray, isEmpty } from 'lodash';
 import { useState } from 'react';
 import NavbarTab from './nav-tab';
-const VerticalNavbar = ({ categories }) => {
-    const [clicked, setClicked] = useState()
+import { useEffect } from 'react';
+const VerticalNavbar = ({ categories, filterProducts }) => {
+    const [clicked, setClicked] = useState("Home")
+
+	useEffect(() => {
+		console.log(clicked)
+		filterProducts(clicked)
+	}, [clicked])
 	
 	if ( isEmpty( categories ) || !isArray( categories ) ) {
 		return null;

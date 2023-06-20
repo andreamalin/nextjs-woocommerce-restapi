@@ -1,5 +1,10 @@
 const images = [
     {
+        name: "Home",
+        normal: "https://wot-cdn-live-prod.s3.amazonaws.com/samsung/home.svg",
+        clicked: "https://wot-cdn-live-prod.s3.amazonaws.com/samsung/home-blue.svg"
+    },
+    {
         name: "Galaxy Buds",
         normal: "https://wot-cdn-live-prod.s3.amazonaws.com/samsung/buds.svg",
         clicked: "https://wot-cdn-live-prod.s3.amazonaws.com/samsung/buds-blue.svg"

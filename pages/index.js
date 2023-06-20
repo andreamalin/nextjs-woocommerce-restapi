@@ -11,8 +11,10 @@ import axios from 'axios';
 import { getCategoriesData, getProductsData } from '../src/utils/products';
 import Layout from '../src/components/layout';
 import VerticalNavbar from '../src/components/vertical-navbar';
+import { useState } from 'react';
 
-export default function Home({ headerFooter, products, categories }) {
+export default function Home({ headerFooter, productsInitial, categories }) {
+	const [ products, setProducts ] = useState(productsInitial)
 	const seo = {
 		title: 'Next JS WooCommerce REST API',
 		description: 'Next JS WooCommerce Theme',
@@ -23,11 +25,16 @@ export default function Home({ headerFooter, products, categories }) {
 			follow: 'follow',
 		},
 	}
+
+	const filterProducts = (categoryName) => {
+		setProducts(productsInitial.filter(obj => obj.categories.some(category => category.name === categoryName)))
+	}
+
 	return (
 		<>
 		<div className="samsung-banner" />
 		<Layout showHeader headerFooter={ headerFooter || {} } seo={ seo }>
-			<VerticalNavbar categories={categories} />
+			<VerticalNavbar categories={categories} filterProducts={ filterProducts } />
 			<Products products={products} />
 		</Layout>
 		</>
@@ -44,11 +51,8 @@ export async function getStaticProps() {
 	return {
 		props: {
 			headerFooter: headerFooterData?.data ?? {},
-			products: products ?? {},
-			categories: categories.filter(
-				o =>
-				o.name != "Uncategorized"
-			  ) ?? {}
+			productsInitial: products ?? {},
+			categories: categories ?? {}
 		},
 		
 		/**

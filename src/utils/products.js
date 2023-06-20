@@ -12,11 +12,12 @@ const api = new WooCommerceRestApi( {
  *
  * @return {Promise<void>}
  */
-export const getProductsData = async ( perPage = 50 ) => {
+export const getProductsData = async ( perPage = 50, categoryId ) => {
 	return await api.get(
 		'products',
 		{
 			per_page: perPage || 50,
+			category: categoryId || ""
 		},
 	);
 };
