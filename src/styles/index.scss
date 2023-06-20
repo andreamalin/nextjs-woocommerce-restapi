@@ -26,3 +26,41 @@
 
 // NProgress Styles.
 @import "04-libraries/nprogress";
+
+
+.samsung-banner {
+    width: 100%;
+    height: 30vw;
+    background-image: url("https://blog.abenson.com/wp-content/uploads/2021/01/abenson-samsung-galaxy-s21-series-5g-pre-order.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+
+.vertical-nav-bg {
+    background-color: #1B2D6B;
+  }
+
+.tab {
+    font-size: 2vw;
+    width: 100%;
+    line-height: normal;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 18vw; /* Change the height here */
+    width: 100%;
+    
+    margin-top: 4vw;
+
+    img {
+        width: 10vw; /* Change the width here */
+        height: 10vw; /* Change the height here */
+    }
+
+    &.clicked-tab {
+        background-color: white;
+        color: #1528A0;
+        font-weight: bolder;
+    }
+}

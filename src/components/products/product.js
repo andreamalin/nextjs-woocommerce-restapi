@@ -24,20 +24,14 @@ const Product = ( { product } ) => {
 						title={ product?.name ?? '' }
 						width="380"
 						height="380"
+						layout="fill"
 					/>
 					<h6 className="font-bold uppercase my-2 tracking-0.5px">{ product?.name ?? '' }</h6>
 					<div className="mb-4" dangerouslySetInnerHTML={{ __html: sanitize( product?.price_html ?? '' ) }}/>
 				</a>
 			</Link>
 			
-			{ 'simple' === productType ? <AddToCart product={product}/> : null }
-			{
-				'external' === productType ?
-					<ExternalLink
-						url={ product?.external_url ?? '' }
-						text={ product?.button_text ?? '' }
-					/> : null
-			}
+			<AddToCart product={product}/>
 		</div>
 	)
 }

@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect' next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "next",
+    "build": "next build && next export",
+    "start": "next build && next start",
     "svg": "svgr -d src/components/icons src/components/icons/svgs"
   },
   "dependencies": {

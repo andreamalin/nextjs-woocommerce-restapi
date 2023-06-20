@@ -31,15 +31,6 @@ const AddToCart = ( { product } ) => {
 			>
 				{ loading ? 'Adding...' : 'Add to cart' }
 			</button>
-			{ isAddedToCart && ! loading ? (
-				<Link href="/cart">
-					<a
-						className="bg-white hover:bg-gray-100 text-gray-800 font-semibold ml-4 py-11px px-4 border border-gray-400 rounded shadow"
-					>
-						View cart
-					</a>
-				</Link>
-			) : null }
 		</>
 	);
 };

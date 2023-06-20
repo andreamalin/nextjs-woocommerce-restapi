@@ -22,6 +22,21 @@ export const getProductsData = async ( perPage = 50 ) => {
 };
 
 /**
+ * Get Products.
+ *
+ * @return {Promise<void>}
+ */
+export const getCategoriesData = async ( perPage = 50 ) => {
+	return await api.get(
+		'products/categories',
+		{
+			per_page: perPage || 50,
+		},
+	);
+};
+
+
+/**
  * Get Single Product By Slug.
  *
  * @return {Promise<void>}

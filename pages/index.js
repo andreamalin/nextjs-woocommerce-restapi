@@ -8,10 +8,11 @@ import { HEADER_FOOTER_ENDPOINT } from '../src/utils/constants/endpoints';
  * External Dependencies.
  */
 import axios from 'axios';
-import { getProductsData } from '../src/utils/products';
+import { getCategoriesData, getProductsData } from '../src/utils/products';
 import Layout from '../src/components/layout';
+import VerticalNavbar from '../src/components/vertical-navbar';
 
-export default function Home({ headerFooter, products }) {
+export default function Home({ headerFooter, products, categories }) {
 	const seo = {
 		title: 'Next JS WooCommerce REST API',
 		description: 'Next JS WooCommerce Theme',
@@ -24,7 +25,8 @@ export default function Home({ headerFooter, products }) {
 	}
 	return (
 		<Layout headerFooter={ headerFooter || {} } seo={ seo }>
-			<Products products={products}/>
+			<VerticalNavbar categories={categories} />
+			<Products products={products} />
 		</Layout>
 	)
 }
@@ -33,11 +35,17 @@ export async function getStaticProps() {
 	
 	const { data: headerFooterData } = await axios.get( HEADER_FOOTER_ENDPOINT );
 	const { data: products } = await getProductsData();
+	const { data: categories } = await getCategoriesData();
+
 	
 	return {
 		props: {
 			headerFooter: headerFooterData?.data ?? {},
-			products: products ?? {}
+			products: products ?? {},
+			categories: categories.filter(
+				o =>
+				o.name != "Uncategorized"
+			  ) ?? {}
 		},
 		
 		/**

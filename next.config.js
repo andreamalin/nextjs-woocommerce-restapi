@@ -20,6 +20,7 @@ module.exports = {
 	 * @see https://nextjs.org/docs/basic-features/image-optimization#domains
 	 */
 	images: {
+		unoptimized: true,
 		domains: [ allowedImageWordPressDomain, 'via.placeholder.com', 'secure.gravatar.com' ],
 	},
 }
