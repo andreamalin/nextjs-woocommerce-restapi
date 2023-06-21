@@ -8,9 +8,11 @@ import cx from 'classnames';
 const AddToCart = ( { product } ) => {
 	
 	const [ cart, setCart ] = useContext( AppContext );
+	const { cartItems, totalPrice, totalQty } = cart || {};
+
 	const [ isAddedToCart, setIsAddedToCart ] = useState( false );
 	const [ loading, setLoading ] = useState( false );
-	
+
 	if ( isEmpty( product ) ) {
 		return null;
 	}

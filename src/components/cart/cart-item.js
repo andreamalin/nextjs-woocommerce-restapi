@@ -13,6 +13,10 @@ const CartItem = ( {
 	const [updatingProduct, setUpdatingProduct] = useState( false );
 	const [removingProduct, setRemovingProduct] = useState( false );
 	const productImg = item?.data?.images?.[0] ?? '';
+
+	useEffect(() => {
+		setProductCount(item.quantity)
+	}, [item.quantity])
 	
 	/**
 	 * Do not allow state update on an unmounted component.

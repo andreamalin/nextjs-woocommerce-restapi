@@ -20,8 +20,9 @@ const CartItemsContainer = () => {
 			return;
 		}
 		
-		await clearCart( setCart, setClearCartProcessing );
-		router.back()
+		await clearCart( setCart, setClearCartProcessing ).then(() => {
+			router.back();
+		});
 	};
 
 	const handleGoBack = () => {
@@ -48,7 +49,7 @@ const CartItemsContainer = () => {
 					{/*Cart Total*/ }
 					<div className="cart-bottom-layout">
 						<div className='total-price'>
-							Total({totalQty}): {cartItems?.[0]?.currency ?? ''}{ totalPrice }
+							Total({totalQty}): {cartItems?.[0]?.currency ?? ''}{ totalPrice.toFixed(2) }
 						</div>
 
 						<div className='buttons-cart-footer'>

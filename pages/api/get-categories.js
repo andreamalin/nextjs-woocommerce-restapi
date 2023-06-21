@@ -17,8 +17,6 @@ const api = new WooCommerceRestApi({
  * @return {Promise<void>}
  */
 export default async function handler(req, res) {
-    console.log(process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL)
-	
 	const responseData = {
 		success: false,
 		categories: []
