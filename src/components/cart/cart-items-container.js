@@ -70,7 +70,7 @@ const CartItemsContainer = () => {
 								</button>
 							</div>
 							{/*Checkout*/}
-							<Link href="/checkout">
+							<Link rel="noreferrer" target="_blank" href="/checkout">
 								<button className="proceed-to-checkout">
 									<span className="woo-next-cart-checkout-txt">
 										Pagar

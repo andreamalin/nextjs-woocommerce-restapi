@@ -45,7 +45,7 @@ const Footer = ( { footer } ) => {
 							<ul>
 								{ footerMenuItems.map( menuItem => (
 									<li key={ menuItem?.ID }>
-										<Link href={ getPathNameFromUrl( menuItem?.url ?? '' ) || '/' }>
+										<Link rel="noreferrer" target="_blank" href={ getPathNameFromUrl( menuItem?.url ?? '' ) || '/' }>
 											<a>{ menuItem?.title }</a>
 										</Link>
 									</li>

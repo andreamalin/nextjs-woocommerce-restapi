@@ -117,7 +117,8 @@ const CartItem = ( {
 
 				<div className="flex justify-between flex-col description-container">
 					<div className="cart-product-title-wrap">
-						<h3 className="cart-product-title text-brand-black">{ item?.data?.name } 
+						<h3 className="cart-product-title text-brand-black">
+							<p>{ item?.data?.name } </p>
 						
 						<button className="cart-remove-item  flex items-center leading-22px" onClick={ ( event ) => handleRemoveProductClick( event, item?.key ) }>
 							<img src="https://wot-cdn-live-prod.s3.amazonaws.com/samsung/trash.svg" />

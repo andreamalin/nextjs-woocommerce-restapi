@@ -56,7 +56,7 @@ const Header = ( { header } ) => {
 						</div>
 
 						{/*cart*/}
-						<Link href="/cart">
+						<Link rel="noreferrer" target="_blank" href="/cart">
 							<button className="go-to-cart">
 								<span className="woo-next-cart-checkout-txt">
 									Ver carrito

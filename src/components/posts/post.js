@@ -18,7 +18,7 @@ import PostMeta from '../post-meta';
 const Post = ( { post } ) => {
 	return (
 		<div className="mb-8">
-			<Link href={ `/blog/${ post?.slug }/` }>
+			<Link rel="noreferrer" target="_blank" href={ `/blog/${ post?.slug }/` }>
 				<a>
 					<figure className="overflow-hidden mb-4">
 						<Image
@@ -33,7 +33,7 @@ const Post = ( { post } ) => {
 				</a>
 			</Link>
 			<PostMeta date={ post?.date ?? '' } authorName={ post?.meta?.author_name ?? '' }/>
-			<Link href={ `/blog/${ post?.slug }/` }>
+			<Link rel="noreferrer" target="_blank" href={ `/blog/${ post?.slug }/` }>
 				<a>
 					<h2 className="font-bold mb-3 text-lg text-brand-gun-powder font-bold uppercase hover:text-blue-500"
 					    dangerouslySetInnerHTML={ { __html: sanitize( post?.title ?? '' ) } }/>

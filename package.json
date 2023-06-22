@@ -2,13 +2,19 @@
   "name": "nextjs-woocommerce-restapi",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./out/",
   "scripts": {
     "dev": "next",
-    "build": "next build && next export",
+    "build": "next build && next export && node addHtmlExtension.js",
     "start": "next build && next start",
     "svg": "svgr -d src/components/icons src/components/icons/svgs"
   },
   "dependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-export-default-from": "^7.18.10",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
     "@stripe/stripe-js": "^1.36.0",
     "@svgr/cli": "^5.5.0",
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
@@ -38,6 +44,10 @@
     "postcss-import": "^14.1.0",
     "postcss-preset-env": "^7.0.0",
     "precss": "^4.0.0",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^2.2.19",
+    "babel-core": "6.26.3",
+    "babel-loader": "9.1.2",
+    "babel-plugin-transform-react-jsx": "6.24.1",
+    "babel-preset-es2015": "6.24.1"
   }
 }

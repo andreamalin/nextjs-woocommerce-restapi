@@ -52,7 +52,7 @@
 
 .vertical-nav-bg {
     background-color: #1B2D6B;
-    min-height: 75vh;
+    min-height: 72vh;
   }
 
 .tab {
@@ -97,6 +97,7 @@
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     border-radius: 3vw;
     margin: 3vw 2vw 0 2vw;
+    width: 45%;
     
     &:last-child {
         margin: 3vw 2vw 3vw 2vw;
@@ -104,7 +105,7 @@
 }
 
 .max-h-75vh {
-    max-height: 75vh;
+    max-height: 72vh;
     height: fit-content;
 }
 
@@ -136,17 +137,21 @@
 .cart-items-layout {
     height: 80vh;
     overflow-y: scroll;
+
+    .cart-bottom-layout {
+        height: 15vh;
+    }
     .description-container {
         height: 70%;
         margin: auto 0;
     }
     img {
-        width: 3.5vw;
-        height: 3.5vw;
+        width: 4.5vw;
+        height: 4.5vw;
     }
 
     .cart-total-price {
-        font-size: 2vw;
+        font-size: 3vw;
         font-weight: bolder;
     }
 
@@ -164,8 +169,8 @@
         align-items: center;
         
         p {
-            margin: 0 1vw;
-            font-size: 2vw;
+            margin: 0 2vw;
+            font-size: 3vw;
         }
     }
     .cart-layout {
@@ -228,7 +233,11 @@
 .cart-layout-vertical {
     display: flex;
     flex-direction: row;
-    height: 10vh;
+    height: 13vh;
+
+    .cart-item-wrap {
+        align-items: center;
+    }
 
     .cart-items-layout {
         width: 70%;
@@ -236,37 +245,51 @@
         overflow-y: hidden;
         display: flex;
         flex-direction: row;
-        height: 10vh;
-        font-size: 1vw;
+        height: 13vh;
+        font-size: 2vw;
         flex-shrink: 0;
     }
 
     .cart-item-wrap {
         margin: 0 !important;
-        min-width: 33vw;
-        width: 33vw;
+        min-width: 50vw;
+        width: 50vw;
+    }
+
+    .cart-product-title {
+        p {
+            max-width: 80%;
+        }
+        img {
+            width: 5vw;
+            height: 5vw;
+        }
     }
 
     .cart-bottom-layout {
         width: 30%;
-        font-size: 1vw;
+        font-size: 2vw;
     }
 
     .cart-product-footer {
         padding: 0 !important;
     }
 
+    .col-span-2.cart-right-col {
+        display: block;
+    }
+
     h3, p {
-        font-size: 1.3vw;
+        font-size: 2.3vw;
     }
 
     img {
-        width: 2.5vw;
-        height: 2.5vw;
+        width: 3.5vw;
+        height: 3.5vw;
     }
 
     .cart-total-price {
-        font-size: 1.5vw;
+        font-size: 2.5vw;
     }
 }
 
@@ -278,7 +301,7 @@
     margin: auto;
 
     .total-price {
-        font-size: 1.4vw;
+        font-size: 2.4vw;
 
         span {
             font-weight: bold;
@@ -289,19 +312,19 @@
         border: 0.2vw solid #2189FF;
         border-radius: 1vw;
         padding: 1vw 0;
-        width: 15vw;
+        width: 20vw;
         color: #2189FF;
-        font-size: 1.2vw;
+        font-size: 2.2vw;
     }
 
     .go-to-cart {
         border-radius: 1vw;
         padding: 2vw 0;
-        width: 15vw;
+        width: 20vw;
         background-color: #2189FF;
         color: white;
         font-weight: bold;
-        font-size: 1.4vw;
+        font-size: 2.4vw;
         margin: 1vw 0;
     }
 }
@@ -319,19 +342,9 @@
         justify-content: center;
         align-items: center;
         position: relative;
-
-        .samsung-banner {
-            width: 85vh;
-            height: 85vh;
-            display: flex;
-            background-image: url("https://assets.gqindia.com/photos/60c211af6d28724ce5693a81/16:9/pass/Samsung-Summer-Days-Sale.jpg");
-            transform: rotate(270deg);
-            left: -30%;
-            top: 0;
-            position: absolute;
-            background-size: cover;
-            z-index: -1;
-        }
+        background-image: url("https://wot-cdn-live-prod.s3.amazonaws.com/samsung/wallpaper.jpg");
+        background-size: cover;
+        background-position: center;
 
         .samsung-wotdev-logo {
             background-image: url("https://wot-cdn-live-prod.s3.amazonaws.com/samsung/logo_blue.png");

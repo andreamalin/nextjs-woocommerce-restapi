@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Image from '../image';
 import { sanitize } from '../../utils/miscellaneous';
 import AddToCart from '../cart/add-to-cart';
@@ -16,7 +15,6 @@ const Product = ( { product } ) => {
 	
 	return (
 		<div className="product-card">
-			<Link href={ `/product/${ product?.slug }`} >
 				<a>
 					<Image
 						sourceUrl={ img?.src ?? '' }
@@ -29,7 +27,6 @@ const Product = ( { product } ) => {
 					<h6 className="font-bold uppercase my-2 tracking-0.5px">{ product?.name ?? '' }</h6>
 					<div className="mb-4" dangerouslySetInnerHTML={{ __html: sanitize( product?.price_html ?? '' ) }}/>
 				</a>
-			</Link>
 			
 			<AddToCart product={product}/>
 		</div>

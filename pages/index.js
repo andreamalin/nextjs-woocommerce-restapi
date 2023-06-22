@@ -19,11 +19,10 @@ export default function Index() {
 		<Layout>
 			<div className="index">
 				<div className="samsung-initial">
-					<div className='samsung-banner' />
 					<div className='samsung-wotdev-logo' />
 				</div>
 				{/*Home*/}
-				<Link href="/home">
+				<Link rel="noreferrer" target="_blank" href="/home">
 					<a className="proceed-to-home">
 						Toca para Ordenar
 					</a>
