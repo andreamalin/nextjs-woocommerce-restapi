@@ -25,20 +25,21 @@ const Header = ( { header } ) => {
 			return;
 		}
 		
-		await clearCart( setCart, setClearCartProcessing ).then(() => {
-			router.back()
-		});
+		await clearCart( setCart, setClearCartProcessing )
+	};
+
+	const handleGoToCart =  async ( event ) => {
+		event.stopPropagation();
+		document.location.href = "/cart.html"
 	};
 	
 	return (
-		<>
-		{
-			cart?.totalQty &&
+		<div className={`${cart?.totalQty ? "show-bottom-cart" : "hide-bottom-cart"}`}>
 			<div className="content-wrap-cart">
 				<div className="cart-layout-vertical">
 					{/*Cart Items*/ }
 					<div className="cart-items-layout">
-						{ cartItems.length &&
+						{ cartItems?.length &&
 						cartItems.map( ( item ) => (
 							<CartItem
 								key={ item.product_id }
@@ -52,17 +53,13 @@ const Header = ( { header } ) => {
 					{/*Cart Total*/ }
 					<div className="cart-right-layout">
 						<div className='total-price'>
-							Total({totalQty}): <span>{cartItems?.[0]?.currency ?? ''}{ totalPrice.toFixed(2) }</span>
+							Total({totalQty}): <span>{cartItems?.[0]?.currency ?? ''}{ totalPrice?.toFixed(2) }</span>
 						</div>
 
 						{/*cart*/}
-						<Link rel="noreferrer" target="_blank" href="/cart">
-							<button className="go-to-cart">
-								<span className="woo-next-cart-checkout-txt">
-									Ver carrito
-								</span>
-							</button>
-						</Link>
+						<button className="go-to-cart" onClick={(event) => handleGoToCart(event)}>
+							Ver carrito
+						</button>
 
 						{/*Clear entire cart*/}
 						<button
@@ -75,8 +72,7 @@ const Header = ( { header } ) => {
 					</div>
 				</div>
 			</div>
-		}
-		</>
+		</div>
 	);
 };
 

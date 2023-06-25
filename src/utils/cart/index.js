@@ -124,11 +124,15 @@ export const clearCart = async ( setCart, setClearCartProcessing ) => {
 	
 	try {
 		const response = await axios.delete( CART_ENDPOINT, addOrViewCartConfig );
-		viewCart( setCart, setClearCartProcessing );
+		await viewCart( setCart, setClearCartProcessing )
+		setTimeout(() => {
+			document.location.href = "/index.html"
+		}, 400)
 	} catch ( err ) {
 		console.log( 'err', err );
 		setClearCartProcessing(false);
 	}
+	
 };
 
 /**

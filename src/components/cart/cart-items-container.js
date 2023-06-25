@@ -20,9 +20,7 @@ const CartItemsContainer = () => {
 			return;
 		}
 		
-		await clearCart( setCart, setClearCartProcessing ).then(() => {
-			router.back();
-		});
+		await clearCart( setCart, setClearCartProcessing )
 	};
 
 	const handleGoBack = () => {

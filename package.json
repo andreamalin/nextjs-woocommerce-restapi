@@ -35,19 +35,20 @@
     "react-image-gallery": "^1.2.11",
     "sass": "^1.54.9",
     "stripe": "^10.8.0",
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
+    "babel-core": "6.26.3",
+    "babel-loader": "9.1.2",
+    "babel-plugin-transform-react-jsx": "6.24.1",
+    "babel-preset-es2015": "6.24.1",
     "postcss": "^8.4.16",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^14.1.0",
     "postcss-preset-env": "^7.0.0",
     "precss": "^4.0.0",
-    "tailwindcss": "^2.2.19",
-    "babel-core": "6.26.3",
-    "babel-loader": "9.1.2",
-    "babel-plugin-transform-react-jsx": "6.24.1",
-    "babel-preset-es2015": "6.24.1"
+    "tailwindcss": "^2.2.19"
   }
 }
