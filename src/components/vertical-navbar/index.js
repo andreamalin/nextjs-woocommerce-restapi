@@ -21,7 +21,7 @@ const VerticalNavbar = ({ categories, filterProducts }) => {
 			
 			{ categories.length ? categories.map( category => {
 				return (
-					<NavbarTab tab={category} setClicked={setClicked} clicked={clicked} />
+					<NavbarTab key={category.id} tab={category} setClicked={setClicked} clicked={clicked} />
 				)
 			} ) : null }
 		

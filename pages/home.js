@@ -12,9 +12,61 @@ import { getCategoriesData, getProductsData } from '../src/utils/products';
 import Layout from '../src/components/layout';
 import VerticalNavbar from '../src/components/vertical-navbar';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import PopUp from '../src/components/popup';
+import { useRef } from 'react';
 
+let timer = null
 export default function Home({ headerFooter, productsInitial, categories }) {
 	const [ products, setProducts ] = useState(productsInitial)
+
+	const [ seconds, setSeconds ] = useState(false)
+	const [ userIsInactive, setUserIsInactive ] = useState(false)
+	const maximumInactiveMinutes = 0.1
+
+    const handleUserInactivity = () => {
+		setUserIsInactive(false)
+
+		const handleTimeout = () => {
+			setUserIsInactive(true)
+			setSeconds(10)
+		}
+	
+		clearTimeout(timer) // Cleaning timeout before starting new one
+		timer = setTimeout(handleTimeout, maximumInactiveMinutes * 60 * 1000)
+	  }
+
+	const goBack = () => {
+		document.location.href = "/"
+	}
+
+	useEffect(() => {
+		handleUserInactivity()
+	}, [])
+
+	useEffect(() => {
+		document.addEventListener('click', handleUserInactivity)
+		return () => {
+			document.removeEventListener('click', handleUserInactivity)
+		}
+	}, [])
+
+	useEffect(() => {
+		let myInterval = setInterval(() => {
+            if (seconds > 0) {
+                setSeconds(seconds - 1);
+            }
+            if (seconds === 0) {
+				clearInterval(myInterval)
+				goBack()
+            } 
+        }, 1000)
+
+		return () => {
+            clearInterval(myInterval);
+		}
+    }, [userIsInactive, seconds])
+
 	const seo = {
 		title: 'Next JS WooCommerce REST API',
 		description: 'Next JS WooCommerce Theme',
@@ -30,15 +82,28 @@ export default function Home({ headerFooter, productsInitial, categories }) {
 		setProducts(productsInitial.filter(obj => obj.categories.some(category => category.name === categoryName)))
 	}
 
+
 	return (
 		<>
-		<div className="samsung-banner">
-			<div className="wotdev-logo" />
-		</div>
-		<Layout showHeader headerFooter={ headerFooter || {} } seo={ seo }>
-			<VerticalNavbar categories={categories} filterProducts={ filterProducts } />
-			<Products products={products} />
-		</Layout>
+			{
+				userIsInactive ? 
+				<PopUp 
+					primaryText="¡Oye!"
+					secondaryText="¿Aún sigues ahí?"
+					terciaryText={seconds} 
+					primaryButtonText="Aquí sigo"
+					secondaryButtonText="Cancelar orden"
+					secondaryButtonFunction={() => goBack()}
+					primaryButtonFunction={() => handleUserInactivity()} 
+				/> : <></>
+			}
+			<div className="samsung-banner">
+				<div className="wotdev-logo" />
+			</div>
+			<Layout showHeader headerFooter={ headerFooter || {} } seo={ seo }>
+				<VerticalNavbar categories={categories} filterProducts={ filterProducts } />
+				<Products handleUserInactivity={handleUserInactivity} products={products} />
+			</Layout>
 		</>
 	)
 }

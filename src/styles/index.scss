@@ -27,6 +27,10 @@
 // NProgress Styles.
 @import "04-libraries/nprogress";
 
+body {
+    overflow: hidden;
+}
+
 
 .samsung-banner {
     width: 100%;
@@ -381,4 +385,78 @@
 }
 .hide-bottom-cart {
     visibility: hidden;
+}
+
+
+.popup {
+    &-background {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+
+        width: 100vw;
+        height: 100vh;
+
+        background-color: #00000082;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .image {
+            width: 40vw;
+            height: 40vw;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            &-clock {
+                background-image: url("https://wot-cdn-live-prod.s3.amazonaws.com/samsung/clock.svg");
+            }
+        }
+    }
+
+    &-container {
+        background-color: white;
+        width: 75vw;
+        height: 75vh;
+        border-radius: 10vw;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            font-size: 10vw;
+            line-height: normal;
+            color: black;
+        }
+
+        h2 {
+            font-size: 5vw;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        button {
+            margin-top: 3vw;
+            border-radius: 2vw;
+            padding: 3vw 6vw;    
+            font-size: 3vw;
+            width: 40vw;
+        }
+        
+        .primary-button {
+            background-color: #2189FF;
+            color: white;
+            font-weight: bolder;
+        }
+
+        .outline-button {
+            border: 0.2vw solid #2189FF;
+            color: #2189FF;
+        }
+    }
 }
