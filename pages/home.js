@@ -22,9 +22,10 @@ export default function Home({ headerFooter, productsInitial, categories }) {
 
 	const [ seconds, setSeconds ] = useState(false)
 	const [ userIsInactive, setUserIsInactive ] = useState(false)
-	const maximumInactiveMinutes = 0.1
+	const maximumInactiveSeconds = 50
 
     const handleUserInactivity = () => {
+		setSeconds(0)
 		setUserIsInactive(false)
 
 		const handleTimeout = () => {
@@ -33,7 +34,7 @@ export default function Home({ headerFooter, productsInitial, categories }) {
 		}
 	
 		clearTimeout(timer) // Cleaning timeout before starting new one
-		timer = setTimeout(handleTimeout, maximumInactiveMinutes * 60 * 1000)
+		timer = setTimeout(handleTimeout, maximumInactiveSeconds * 1000)
 	  }
 
 	const goBack = () => {
@@ -52,15 +53,19 @@ export default function Home({ headerFooter, productsInitial, categories }) {
 	}, [])
 
 	useEffect(() => {
-		let myInterval = setInterval(() => {
-            if (seconds > 0) {
-                setSeconds(seconds - 1);
-            }
-            if (seconds === 0) {
-				clearInterval(myInterval)
-				goBack()
-            } 
-        }, 1000)
+		let myInterval = null
+
+		if (userIsInactive) {
+			myInterval = setInterval(() => {
+				if (seconds > 0) {
+					setSeconds(seconds - 1);
+				}
+				if (seconds === 0) {
+					clearInterval(myInterval)
+					goBack()
+				} 
+			}, 1000)
+		}
 
 		return () => {
             clearInterval(myInterval);

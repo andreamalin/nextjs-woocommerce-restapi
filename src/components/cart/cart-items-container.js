@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { clearCart } from '../../utils/cart';
 
-const CartItemsContainer = () => {
+const CartItemsContainer = ({ handleUserInactivity }) => {
 	const [ cart, setCart ] = useContext( AppContext );
 	const { cartItems, totalPrice, totalQty } = cart || {};
 	const [ isClearCartProcessing, setClearCartProcessing ] = useState( false );
@@ -32,7 +32,7 @@ const CartItemsContainer = () => {
 			{ cart ? (
 				<div className="cart-layout">
 					{/*Cart Items*/ }
-					<div className="cart-items-layout">
+					<div className="cart-items-layout" onScroll={handleUserInactivity}>
 						{ cartItems.length &&
 						cartItems.map( ( item ) => (
 							<CartItem
