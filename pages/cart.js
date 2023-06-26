@@ -16,18 +16,14 @@ export default function Cart({ headerFooter }) {
 
 
     const handleUserInactivity = () => {
-		if (isInactivityControlled) {
-			setSeconds(0)
-			setUserIsInactive(false)
-	
-			const handleTimeout = () => {
-				setUserIsInactive(true)
-				setSeconds(10)
-			}
-		
-			clearTimeout(timer) // Cleaning timeout before starting new one
-			timer = setTimeout(handleTimeout, maximumInactiveSeconds * 1000)
+		const handleTimeout = () => {
+			setUserIsInactive(true)
+			setSeconds(10)
+			clearInterval(timer)
 		}
+	
+		clearInterval(timer) // Cleaning timeout before starting new one
+		timer = setInterval(handleTimeout, maximumInactiveSeconds * 1000)
 	  }
 
 	const goBack = () => {
@@ -35,8 +31,9 @@ export default function Cart({ headerFooter }) {
 	}
 
 	const removeUserInactivity = () => {
-		clearTimeout(timer) 
+		clearInterval(timer) 
 		clearInterval(myInterval) 
+		document.removeEventListener('click', handleUserInactivity)
 	}
 
 	useEffect(() => {
