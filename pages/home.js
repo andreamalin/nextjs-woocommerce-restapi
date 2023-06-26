@@ -38,7 +38,7 @@ export default function Home({ headerFooter, productsInitial, categories }) {
 	  }
 
 	const goBack = () => {
-		document.location.href = "/"
+		document.location.href = "/index.html"
 	}
 
 	useEffect(() => {

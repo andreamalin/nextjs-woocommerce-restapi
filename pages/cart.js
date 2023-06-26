@@ -31,7 +31,7 @@ export default function Cart({ headerFooter }) {
 	  }
 
 	const goBack = () => {
-		document.location.href = "/"
+		document.location.href = "/index.html"
 	}
 
 	const removeUserInactivity = () => {

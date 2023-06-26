@@ -6,20 +6,23 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { clearCart } from '../../utils/cart';
 import PopUp from '../popup';
+import { printOrder } from '../../libs/printing'
 
 const CartItemsContainer = ({ handleUserInactivity, removeUserInactivity }) => {
 	const [ cart, setCart ] = useContext( AppContext );
 	const { cartItems, totalPrice, totalQty } = cart || {};
 	const [ isClearCartProcessing, setClearCartProcessing ] = useState( false );
 	const [ step, setStep ] = useState(0)
+	const [ printed, setPrinted ] = useState(false)
 
 	const router = useRouter()
 
 	const handleCheckoutSteps = () => {
+
 		if (step == 1) {
 			return (
 				<PopUp 
-						quaternaryText="Total a pagar: Q30,000"
+						quaternaryText={`Total a pagar: ${cartItems?.[0]?.currency ?? ''}${ totalPrice.toFixed(2) }`}
 						secondaryText="Selecciona el método de pago"
 						secondaryButtonText="Regresar"
 						secondaryButtonFunction={() => setStep(0)}
@@ -31,7 +34,7 @@ const CartItemsContainer = ({ handleUserInactivity, removeUserInactivity }) => {
 			removeUserInactivity()
 			setTimeout(() => {
 				setStep(3)
-			}, 1000)
+			}, 2000)
 
 			return <PopUp 
 				quaternaryText="Por favor, espere..."
@@ -39,6 +42,10 @@ const CartItemsContainer = ({ handleUserInactivity, removeUserInactivity }) => {
 				showLoader
 			/> 
 		} else if (step == 3) {
+			if (!printed) {
+				setPrinted(true)
+				printOrder(cartItems, totalPrice)
+			}
 			return <PopUp 
 					quaternaryText="Recibo de orden"
 					primaryText="¡Gracias!"

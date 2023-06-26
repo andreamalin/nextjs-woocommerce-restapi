@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-
 // Specify the build output directory (adjust it if needed)
 const buildDirectory = './out';
 
@@ -29,9 +28,38 @@ function traverseDirectory(dirPath) {
 
           // Write the updated HTML file
           fs.writeFileSync(filePath, html, 'utf8');
+          addb2Apis(filePath)
         }
       }
     }
+  });
+}
+
+function addb2Apis(filePath) {
+  // Read the content of index.html
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    // Find the position to insert the new script tags
+    const position = data.lastIndexOf('<head>');
+
+    // Construct the new content with the added script tags
+    const updatedContent = data.slice(0, position) +
+      '<script type="text/javascript" src="$B2BAPIS/b2bapis/b2bapis.js"></script>\n' +
+      '<script type="text/javascript" src="$WEBAPIS/webapis/webapis.js"></script>\n' +
+      data.slice(position);
+
+    // Write the updated content back to index.html
+    fs.writeFile(filePath, updatedContent, 'utf8', (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log('Script tags added to index.html successfully!');
+    });
   });
 }
 
