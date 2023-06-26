@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import Loader from "./loader";
-import { AppContext } from "../context";
 
 const PopUp = ({ 
     primaryText, 
@@ -16,11 +14,9 @@ const PopUp = ({
     showLoader,
     isPrinter,
     paymentMethod,
-    userIsInactive
+    userIsInactive,
+    printerText
 }) => {
-    const [ cart, setCart ] = useContext( AppContext );
-	const { totalPrice, cartItems } = cart || {};
-
 	return (
         <div className="popup-background" style={userIsInactive ? {zIndex: 3} : {}}>
             <div className="popup-container">
@@ -35,8 +31,8 @@ const PopUp = ({
                         { isPrinter && 
                             <div className="order-container">
                                 <h3>Orden No.</h3>
-                                <h1>1</h1>
-                                <h6>Total:  {cartItems?.[0]?.currency ?? ''}{ totalPrice.toFixed(2) }</h6>
+                                <h1>{ printerText[0] }</h1>
+                                <h6>Total:  { printerText[1]?.toFixed(2) }</h6>
                             </div>
                         }
                         <div className={`image image-${icon}`} /> 

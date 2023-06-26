@@ -15,12 +15,10 @@ import { useContext, useState } from 'react';
 import { useEffect } from 'react';
 import PopUp from '../src/components/popup';
 import { useRef } from 'react';
-import { clearCart } from '../src/utils/cart';
-import { AppContext } from '../src/components/context';
+import { goBack } from '../src/utils/go-back';
 
 let timer = null
 export default function Home({ headerFooter, productsInitial, categories }) {
-	const [ cart, setCart ] = useContext( AppContext );
 	const [ products, setProducts ] = useState(productsInitial)
 
 	const [ seconds, setSeconds ] = useState(false)
@@ -40,12 +38,12 @@ export default function Home({ headerFooter, productsInitial, categories }) {
 		timer = setTimeout(handleTimeout, maximumInactiveSeconds * 1000)
 	  }
 
-	const goBack = async () => {
-		localStorage.clear()
-		await clearCart( setCart, () => {} )
-	}
-
 	useEffect(() => {
+		const orderNo = localStorage.getItem("ordenNo")
+		if (orderNo === null) {
+			localStorage.setItem("ordenNo", 1)
+		}
+
 		handleUserInactivity()
 	}, [])
 

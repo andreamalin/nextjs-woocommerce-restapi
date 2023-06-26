@@ -51,7 +51,12 @@ export const viewCart = ( setCart, setProcessing = () => {} ) => {
 	
 	axios.get( CART_ENDPOINT, addOrViewCartConfig )
 		.then( ( res ) => {
-			const formattedCartData = getFormattedCartData( res?.data ?? [] )
+			let formattedCartData = getFormattedCartData( res?.data ) || {};
+			formattedCartData = { 
+				...formattedCartData, 
+				orderNo: localStorage.getItem("ordenNo")
+			}
+
 			setCart( formattedCartData );
 			setProcessing(false);
 		} )
@@ -176,3 +181,7 @@ const calculateCartQtyAndPrice = ( cartItems ) => {
 	return qtyAndPrice;
 }
 
+
+export const updateOrderNo = (setCart) => {
+	localStorage.setItem("ordenNo", parseInt(localStorage.getItem("ordenNo")) + 1)
+};

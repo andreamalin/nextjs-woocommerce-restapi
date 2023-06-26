@@ -4,13 +4,15 @@ import CartItem from './cart-item';
 import { useRouter } from 'next/router';
 
 import Link from 'next/link';
-import { clearCart } from '../../utils/cart';
+import { clearCart, updateOrderNo } from '../../utils/cart';
 import PopUp from '../popup';
 import { printOrder } from '../../libs/printing'
+import { goBack } from '../../utils/go-back';
 
 const CartItemsContainer = ({ handleUserInactivity, removeUserInactivity }) => {
 	const [ cart, setCart ] = useContext( AppContext );
-	const { cartItems, totalPrice, totalQty } = cart || {};
+	const { cartItems, totalPrice, totalQty, orderNo } = cart || {};
+
 	const [ isClearCartProcessing, setClearCartProcessing ] = useState( false );
 	const [ step, setStep ] = useState(0)
 	const [ printed, setPrinted ] = useState(false)
@@ -50,7 +52,12 @@ const CartItemsContainer = ({ handleUserInactivity, removeUserInactivity }) => {
 					quaternaryText="Recibo de orden"
 					primaryText="¡Gracias!"
 					icon="printer"
+					printerText={[orderNo, totalPrice]}
 					isPrinter
+					secondaryButtonFunction={() => {
+						updateOrderNo(setCart)
+						goBack()
+					}}
 					secondaryButtonText="Terminar orden"
 				/> 
 		} else {
@@ -80,7 +87,7 @@ const CartItemsContainer = ({ handleUserInactivity, removeUserInactivity }) => {
 				<div className="cart-layout">
 					{/*Cart Items*/ }
 					<div className="cart-items-layout" onScroll={handleUserInactivity}>
-						{ cartItems.length &&
+						{ cartItems?.length &&
 						cartItems.map( ( item ) => (
 							<CartItem
 								key={ item.product_id }
@@ -94,7 +101,7 @@ const CartItemsContainer = ({ handleUserInactivity, removeUserInactivity }) => {
 					{/*Cart Total*/ }
 					<div className="cart-bottom-layout">
 						<div className='total-price'>
-							Total({totalQty}): {cartItems?.[0]?.currency ?? ''}{ totalPrice.toFixed(2) }
+							Total({totalQty}): {cartItems?.[0]?.currency ?? ''}{ totalPrice?.toFixed(2) }
 						</div>
 
 						<div className='buttons-cart-footer'>
