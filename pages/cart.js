@@ -3,12 +3,15 @@ import { HEADER_FOOTER_ENDPOINT } from '../src/utils/constants/endpoints';
 import axios from 'axios';
 import CartItemsContainer from '../src/components/cart/cart-items-container';
 import PopUp from '../src/components/popup';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useState } from 'react';
+import { clearCart } from '../src/utils/cart';
+import { AppContext } from '../src/components/context';
 
 let timer = null
 let myInterval = null
 export default function Cart({ headerFooter }) {
+	const [ cart, setCart ] = useContext( AppContext );
 	const [ seconds, setSeconds ] = useState(false)
 	const [ userIsInactive, setUserIsInactive ] = useState(false)
 	const [ isInactivityControlled, controllInactivity ] = useState(true)
@@ -26,8 +29,10 @@ export default function Cart({ headerFooter }) {
 		timer = setInterval(handleTimeout, maximumInactiveSeconds * 1000)
 	  }
 
-	const goBack = () => {
-		document.location.href = "/index.html"
+	const goBack = async () => {
+		// Clear the entire cart.
+		localStorage.clear()
+		await clearCart( setCart, () => {} )
 	}
 
 	const removeUserInactivity = () => {

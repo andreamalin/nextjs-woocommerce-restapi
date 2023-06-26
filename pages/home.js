@@ -11,18 +11,21 @@ import axios from 'axios';
 import { getCategoriesData, getProductsData } from '../src/utils/products';
 import Layout from '../src/components/layout';
 import VerticalNavbar from '../src/components/vertical-navbar';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useEffect } from 'react';
 import PopUp from '../src/components/popup';
 import { useRef } from 'react';
+import { clearCart } from '../src/utils/cart';
+import { AppContext } from '../src/components/context';
 
 let timer = null
 export default function Home({ headerFooter, productsInitial, categories }) {
+	const [ cart, setCart ] = useContext( AppContext );
 	const [ products, setProducts ] = useState(productsInitial)
 
 	const [ seconds, setSeconds ] = useState(false)
 	const [ userIsInactive, setUserIsInactive ] = useState(false)
-	const maximumInactiveSeconds = 50
+	const maximumInactiveSeconds = 20
 
     const handleUserInactivity = () => {
 		setSeconds(0)
@@ -37,8 +40,9 @@ export default function Home({ headerFooter, productsInitial, categories }) {
 		timer = setTimeout(handleTimeout, maximumInactiveSeconds * 1000)
 	  }
 
-	const goBack = () => {
-		document.location.href = "/index.html"
+	const goBack = async () => {
+		localStorage.clear()
+		await clearCart( setCart, () => {} )
 	}
 
 	useEffect(() => {
