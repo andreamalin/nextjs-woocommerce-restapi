@@ -404,6 +404,19 @@ body {
         justify-content: center;
         align-items: center;
 
+        .image-container {
+            position: relative;
+            margin: 2vw 0;
+
+            .order-container {
+                position: absolute;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+            }
+        }
+
         .image {
             width: 40vw;
             height: 40vw;
@@ -414,6 +427,12 @@ body {
             &-clock {
                 background-image: url("https://wot-cdn-live-prod.s3.amazonaws.com/samsung/clock.svg");
             }
+            &-receipt {
+                background-image: url("https://wot-cdn-live-prod.s3.amazonaws.com/samsung/receipt.svg");
+            }
+            &-printer {
+                background-image: url("https://wot-cdn-live-prod.s3.amazonaws.com/samsung/printer.svg");
+            }
         }
     }
 
@@ -422,6 +441,7 @@ body {
         width: 75vw;
         height: 75vh;
         border-radius: 10vw;
+        text-align: center;
 
         display: flex;
         flex-direction: column;
@@ -438,7 +458,24 @@ body {
             font-size: 5vw;
             font-weight: 400;
             line-height: normal;
+            width: 80%;
         }
+
+        h5 {
+            font-size: 3vw;
+            font-weight: bold;
+            line-height: normal;
+            color: #6f6f6f;
+            margin-bottom: 3vw;
+        }
+
+        h6 {
+            font-size: 2vw;
+            line-height: normal;
+            color: #6f6f6f;
+            margin-bottom: 3vw;
+        }
+
 
         button {
             margin-top: 3vw;
@@ -458,5 +495,94 @@ body {
             border: 0.2vw solid #2189FF;
             color: #2189FF;
         }
+
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            h4 {
+                margin: 0;
+                font-weight: bold;
+                font-size: 3vw;
+                line-height: auto;
+                color: black;
+            }
+
+            .payment {
+                width: 80%;
+                background-color: #EBEBEB;
+                border-radius: 3vw;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex-direction: row;
+                padding: 1vw;
+                margin-top: 4vw;
+
+                &:last-child {
+                    margin-bottom: 4vw;
+                }
+            }
+
+            .icon {
+                width: 10vw;
+                height: 10vw;
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                margin: 0 2vw;
+    
+                &-card {
+                    background-image: url("https://wot-cdn-live-prod.s3.amazonaws.com/samsung/card.svg");
+                }
+                &-cash {
+                    background-image: url("https://wot-cdn-live-prod.s3.amazonaws.com/samsung/cash.svg");
+                }
+            }
+        }
     }
 }
+
+.lds-ring {
+    display: inline-block;
+    position: absolute;
+    z-index: 0;
+    width: 50vw;
+    height: 50vw;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 50vw;
+    height: 50vw;
+    border: 0.5vw solid #1B2D6B;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #1B2D6B transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

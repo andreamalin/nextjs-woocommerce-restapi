@@ -100,6 +100,7 @@ export default function Home({ headerFooter, productsInitial, categories }) {
 					secondaryButtonText="Cancelar orden"
 					secondaryButtonFunction={() => goBack()}
 					primaryButtonFunction={() => handleUserInactivity()} 
+					icon="clock"
 				/> : <></>
 			}
 			<div className="samsung-banner">

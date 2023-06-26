@@ -7,30 +7,41 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 let timer = null
+let myInterval = null
 export default function Cart({ headerFooter }) {
 	const [ seconds, setSeconds ] = useState(false)
 	const [ userIsInactive, setUserIsInactive ] = useState(false)
+	const [ isInactivityControlled, controllInactivity ] = useState(true)
 	const maximumInactiveSeconds = 50
 
-    const handleUserInactivity = () => {
-		setSeconds(0)
-		setUserIsInactive(false)
 
-		const handleTimeout = () => {
-			setUserIsInactive(true)
-			setSeconds(10)
-		}
+    const handleUserInactivity = () => {
+		if (isInactivityControlled) {
+			setSeconds(0)
+			setUserIsInactive(false)
 	
-		clearTimeout(timer) // Cleaning timeout before starting new one
-		timer = setTimeout(handleTimeout, maximumInactiveSeconds * 1000)
+			const handleTimeout = () => {
+				setUserIsInactive(true)
+				setSeconds(10)
+			}
+		
+			clearTimeout(timer) // Cleaning timeout before starting new one
+			timer = setTimeout(handleTimeout, maximumInactiveSeconds * 1000)
+		}
 	  }
 
 	const goBack = () => {
 		document.location.href = "/"
 	}
 
+	const removeUserInactivity = () => {
+		clearTimeout(timer) 
+		clearInterval(myInterval) 
+	}
+
 	useEffect(() => {
 		handleUserInactivity()
+		setUserIsInactive(false)
 	}, [])
 
 	useEffect(() => {
@@ -41,8 +52,6 @@ export default function Cart({ headerFooter }) {
 	}, [])
 
 	useEffect(() => {
-		let myInterval = null
-
 		if (userIsInactive) {
 			myInterval = setInterval(() => {
 				if (seconds > 0) {
@@ -72,13 +81,15 @@ export default function Cart({ headerFooter }) {
 					secondaryButtonText="Cancelar orden"
 					secondaryButtonFunction={() => goBack()}
 					primaryButtonFunction={() => handleUserInactivity()} 
+					icon="clock"
+					userIsInactive
 				/> : <></>
 			}
 			<div className='banner-cart'>
 				Revisar orden
 			</div>
 			<Layout headerFooter={{}}>
-				<CartItemsContainer handleUserInactivity={handleUserInactivity} />
+				<CartItemsContainer handleUserInactivity={handleUserInactivity} removeUserInactivity={() => removeUserInactivity()} />
 			</Layout>
 		</>
 	);
