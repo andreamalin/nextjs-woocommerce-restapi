@@ -80,7 +80,7 @@ export function printOrder(items, totalPrice) {
                     + currentdate.getSeconds();
 
     let message = {
-        "OrderNo": "1",
+        "OrderNo": localStorage.getItem("ordenNo"),
         "PaymentDisplayName": "Efectivo",
         "ReceiptItemGroups": [],
         "ServiceFee": 0,
