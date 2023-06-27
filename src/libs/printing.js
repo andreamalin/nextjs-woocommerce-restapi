@@ -4,7 +4,7 @@ function testClick() {
 
 function toPrice(price) {
     if (!price) return "";
-    return Number.parseFloat(price).toFixed(2);
+    return Number.parseFloat(price).toLocaleString();
 }
 
 function truncate(input, len) {
@@ -129,7 +129,7 @@ export function printOrder(items, totalPrice) {
         "showNegativeModifiers": "False",
         "subtotal": totalPrice,
         "tableTentNumber": "",
-        "tax": 0.12,
+        "tax": totalPrice*0.12,
         "taxType": "1",
         "thankYouMessage": "",
         "thirdPartyOrderId": "",
@@ -411,10 +411,12 @@ function getItemMarkup(items, taxType = "", showNegativeModifiers, showDefaultMo
     var itemsList = "";
 
     for (const item of items) {
-        var eachPrice = (parseFloat(item.Price)).toFixed(2);
+        console.log(item.Price)
+        var eachPrice = (parseFloat(item.Price).toLocaleString());
+        console.log(eachPrice)
 
         var oneItem = ``
-        var totalPrice = (parseFloat(item.Quantity) * eachPrice).toFixed(2);
+        var totalPrice = (parseFloat(item.Quantity) * parseFloat(item.Price)).toLocaleString();
         oneItem += "1B4501";
         if (((eachPrice != '' && eachPrice != '0' && eachPrice != '0.00')||item.IsLoyaltyDiscountItem) && !isRemovePricing) {
 oneItem += stringToHex(setAllignedText(item.EnablePricebyWeight ? item.EnablePricebyWeight.toLowerCase() == 'false' ? item.Quantity : item.Quantity + getWeightUnit(item.WeightUnitID) : item.Quantity, qtySpace, false) +
@@ -460,8 +462,8 @@ oneItem += stringToHex(setAllignedText(item.EnablePricebyWeight ? item.EnablePri
                             oneItem += stringToHex(
                                 setAllignedText("", qtySpace, false) +
                                 setItemAlignedText(comboItemName, qtySpace, itemSpaceReciept, false) +
-                                setAllignedText(addDollar(parseFloat(comboItem.ExtraPrice).toFixed(2)), eachPriceSpace, true) +
-                                setAllignedText(addDollar((parseFloat(item.Quantity) * parseFloat(comboItem.Quantity ? comboItem.Quantity : '1') * parseFloat(comboItem.ExtraPrice)).toFixed(2)), totalPriceSpace, true) +
+                                setAllignedText(addDollar(parseFloat(comboItem.ExtraPrice).toLocaleString()), eachPriceSpace, true) +
+                                setAllignedText(addDollar((parseFloat(item.Quantity) * parseFloat(comboItem.Quantity ? comboItem.Quantity : '1') * parseFloat(comboItem.ExtraPrice)).toLocaleString()), totalPriceSpace, true) +
                                 "\n", true);
 
                             // thirdSpace = thirdSpaceTotal - (pricePer.toString().length + 1); // For Dollar sign need to add lengh + 1
@@ -479,7 +481,7 @@ oneItem += stringToHex(setAllignedText(item.EnablePricebyWeight ? item.EnablePri
                                 "\n", true);
                         }
 
-                        // oneItem += lineSpacing("", "-" + comboItemName, parseFloat(comboItem.ExtraPrice).toFixed(2), (parseFloat(item.Quantity) * parseFloat(comboItem.Quantity) * parseFloat(comboItem.ExtraPrice)).toFixed(2)) + "\n"
+                        // oneItem += lineSpacing("", "-" + comboItemName, parseFloat(comboItem.ExtraPrice).toLocaleString(), (parseFloat(item.Quantity) * parseFloat(comboItem.Quantity) * parseFloat(comboItem.ExtraPrice)).toLocaleString()) + "\n"
                         //Display Combo item variation
                         if (
                             comboItem.Variations != null &&
@@ -495,8 +497,8 @@ oneItem += stringToHex(setAllignedText(item.EnablePricebyWeight ? item.EnablePri
                                             setAllignedText("", qtySpace, false) +
                                             setItemAlignedText(" " + variationName, qtySpace, itemSpaceReciept, false) +
                                             // setAllignedText2(" " + variationName, itemSpaceReciept, false) +
-                                            setAllignedText(isRemovePricing ? "" : addDollar(parseFloat(variant.Price).toFixed(2)), eachPriceSpace, true) +
-                                            setAllignedText(isRemovePricing ? "" : addDollar((parseFloat(comboItem.Quantity ? comboItem.Quantity : "1") * parseFloat(item.Quantity) * parseFloat(variant.Price)).toFixed(2)),
+                                            setAllignedText(isRemovePricing ? "" : addDollar(parseFloat(variant.Price).toLocaleString()), eachPriceSpace, true) +
+                                            setAllignedText(isRemovePricing ? "" : addDollar((parseFloat(comboItem.Quantity ? comboItem.Quantity : "1") * parseFloat(item.Quantity) * parseFloat(variant.Price)).toLocaleString()),
                                                 totalPriceSpace, true) + "\n", true);
                                     }
                                 }
@@ -535,7 +537,7 @@ oneItem += stringToHex(setAllignedText(item.EnablePricebyWeight ? item.EnablePri
                                 setItemAlignedText(" " + variatioName, qtySpace, itemSpaceReciept, false) +
                                 // setAllignedText2(" " + variatioName, itemSpaceReciept, false) + 
                                 setAllignedText(isRemovePricing ? "" : addDollar(selectedVariation.Price), eachPriceSpace, true) +
-                                setAllignedText(isRemovePricing ? "" : addDollar((parseFloat(selectedVariation.Price) * parseFloat(item.Quantity)).toFixed(2)),
+                                setAllignedText(isRemovePricing ? "" : addDollar((parseFloat(selectedVariation.Price) * parseFloat(item.Quantity)).toLocaleString()),
                                     totalPriceSpace, true) + "\n", true);
                         }
                     }
@@ -553,7 +555,7 @@ oneItem += stringToHex(setAllignedText(item.EnablePricebyWeight ? item.EnablePri
                         setAllignedText("", qtySpace, false) +
                         setItemAlignedText(item.DiscountName, qtySpace, itemSpaceReciept, false) +
                         setAllignedText("", eachPriceSpace, true) +
-                        setAllignedText("-" + addDollar(item.DiscountAmount.toFixed(2)), totalPriceSpace, true) +
+                        setAllignedText("-" + addDollar(item.DiscountAmount.toLocaleString()), totalPriceSpace, true) +
                         "\n", true);
                 }
 
@@ -585,7 +587,7 @@ oneItem += stringToHex(setAllignedText(item.EnablePricebyWeight ? item.EnablePri
                 oneItem += stringToHex(
                     setAllignedText("", qtySpace, false) +
                     setAllignedText2(
-                        (taxType == '2' ? "VAT" : "Item Tax") + " (" + parseFloat(item.TaxPercentage).toFixed(2) + "%)",
+                        (taxType == '2' ? "VAT" : "Item Tax") + " (" + parseFloat(item.TaxPercentage).toLocaleString() + "%)",
                         itemSpaceReciept,
                         false
                     ) +
@@ -708,9 +710,9 @@ function makeConcessionaireReceipt(message) {
     }
 
     var tip = "";
-    if (conTip && conTip != "" && conTip != "0" && conTip != "0.00") {
-        tip = getTotalText("Tip:", addDollarAllowZero(conTip.toString())) + "\n"
-    }
+    // if (conTip && conTip != "" && conTip != "0" && conTip != "0.00") {
+    //     tip = getTotalText("Tip:", addDollarAllowZero(conTip.toString())) + "\n"
+    // }
     var tax = ""
     // if (taxOrder && taxOrder != "" && taxOrder != "0" && taxOrder != "0.00") {
     tax = getTotalText(message.taxType == '2' ? "VAT:" : "Tax:", addDollarAllowZero(conTax.toString())) + "\n"
@@ -866,7 +868,7 @@ function makeReceipt(message) {
     var address1 = message.address1 !== "" ? String(message.address1).trim() : null;
     var address2 = message.address2 !== "" ? String(message.address2).trim() : null;
     let reward=message.reward
-    let rewardText=Number(message.reward).toFixed(2)
+    let rewardText=Number(message.reward).toLocaleString()
     var rewardRedeem = message.rewardRedeem;
     var rewardRedeemDiscountAmout = message.rewardRedeemDiscountAmout;
     var rewardBottomTextEarnPoint = message.rewardBottomTextEarnPoint && message.rewardBottomTextEarnPoint != '' ? center(String(message.rewardBottomTextEarnPoint)) + "\n" : '';
@@ -890,7 +892,7 @@ function makeReceipt(message) {
         var receiptItemGroup = message.ReceiptItemGroups;
         for (let i = 0; i < receiptItemGroup.length; i++) {
 
-            receiptItemGroupText += getTotalText(receiptItemGroup[i].name, addDollar(Number(receiptItemGroup[i].total).toFixed(2))) + "\n";
+            receiptItemGroupText += getTotalText(receiptItemGroup[i].name, addDollar(Number(receiptItemGroup[i].total).toLocaleString())) + "\n";
         }
     }
     //Do Ready data for upcharge
@@ -936,9 +938,9 @@ function makeReceipt(message) {
     }
 
     var tip = "";
-    if (tipOrder && tipOrder != "" && tipOrder != "0" && tipOrder != "0.00") {
-        tip = getTotalText("Tip:", addDollarAllowZero(tipOrder.toString())) + "\n"
-    }
+    // if (tipOrder && tipOrder != "" && tipOrder != "0" && tipOrder != "0.00") {
+    //     tip = getTotalText("Tip:", addDollarAllowZero(tipOrder.toString())) + "\n"
+    // }
     var tax = ""
     // if (taxOrder && taxOrder != "" && taxOrder != "0" && taxOrder != "0.00") {
     tax = getTotalText(message.taxType == '2' ? "VAT:" : "Tax:", addDollarAllowZero(taxOrder.toString())) + "\n"
@@ -1367,7 +1369,7 @@ function stringToHex(tmp, dc) {
 }
 
 function numberSpaces(number) {
-    var total = Number(number).toFixed(2).toString().split(".");
+    var total = Number(number).toLocaleString().toString().split(".");
     if (total[0].length == 1) {
         total[0] = total[0];
     } else if (total[0].length == 2) {
@@ -1389,7 +1391,7 @@ function center(str, spaces = 1) {
             if ((42 / spaces) - wordSplit[i].length > 0) {
                 var emptySpace = "";
                 var numspace = ((42 / spaces) - wordSplit[i].length) / 2;
-                for (j = 0; j < numspace; j++) {
+                for (var j = 0; j < numspace; j++) {
                     emptySpace += " ";
                 }
                 strMain += emptySpace + wordSplit[i].trim() + emptySpace + "\n";
@@ -1606,13 +1608,13 @@ function zReportLineSpacing(row, price) {
 }
 
 function addDollar(price, showZero=false) {
-    if(showZero){
-        return currencySymbol + parseFloat(price).toFixed(2);
-    }
-    if (price != "" && price != "0" && price != "0.00") {
-        return currencySymbol + parseFloat(price).toFixed(2);
-    }
-    return "";
+    // if(showZero){
+    //     return currencySymbol + parseFloat(price).toLocaleString();
+    // }
+    // if (price != "" && price != "0" && price != "0.00") {
+    //     return currencySymbol + parseFloat(price).toLocaleString();
+    // }
+    return currencySymbol + price
 }
 
 function addDollarAllowZero(price) {
@@ -1704,7 +1706,7 @@ function setItemAlignedText(str_text, padding, space, isDigit, isCenter = false)
                     if (str.length >= space || str.length >= space) {
                         var startIndex = 0;
                         var endIndex = space;
-                        for (j = 0; j < str.length; j++) {
+                        for (var j = 0; j < str.length; j++) {
                             if (j > 0) {
                                 startIndex = endIndex;
                                 endIndex = Math.min(endIndex + space, str.length);
@@ -1775,6 +1777,7 @@ function setItemAlignedText(str_text, padding, space, isDigit, isCenter = false)
 }
 
 function setAllignedText(str_text, space, isDigit) {
+    console.log(str_text)
     var txt = "";
     var line_flag = 0;
     var space_cnt = 0;
@@ -1816,7 +1819,7 @@ function setAllignedText(str_text, space, isDigit) {
             }
         }
 
-        for (j = 0; j < 28 - (space_cnt + 1); j++) {
+        for (var j = 0; j < 28 - (space_cnt + 1); j++) {
             txt_space = txt_space + " ";
         }
         return txt + txt_space;
