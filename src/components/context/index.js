@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { clearCart } from '../../utils/cart';
 export const AppContext = React.createContext([
 	{},
 	() => {}
@@ -13,11 +14,15 @@ export const AppProvider = ( props ) => {
 	 *
 	 * Sets the cart data from localStorage to `cart` in the context.
 	 */
-	useEffect( () => {
+	useEffect( async () => {
 		
 		if ( process.browser ) {
 			let cartData = localStorage.getItem( 'next-cart' );
 			cartData = null !== cartData ? JSON.parse( cartData ) : '';
+
+			if (cartData == '') {
+				await clearCart(setCart, () => {}, false)
+			}
 			setCart( cartData );
 		}
 		

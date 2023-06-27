@@ -121,7 +121,7 @@ export const deleteCartItem = ( cartKey, setCart, setRemovingProduct ) => {
  * @param {Function} setCart Set Cart
  * @param {Function} setClearCartProcessing Set Clear Cart Processing.
  */
-export const clearCart = async ( setCart, setClearCartProcessing ) => {
+export const clearCart = async ( setCart, setClearCartProcessing, redirect=true ) => {
 	
 	setClearCartProcessing(true);
 	
@@ -130,9 +130,12 @@ export const clearCart = async ( setCart, setClearCartProcessing ) => {
 	try {
 		const response = await axios.delete( CART_ENDPOINT, addOrViewCartConfig );
 		await viewCart( setCart, setClearCartProcessing )
-		setTimeout(() => {
-			document.location.href = "/index.html"
-		}, 400)
+
+		if (redirect) {
+			setTimeout(() => {
+				document.location.href = "/index.html"
+			}, 600)
+		}
 	} catch ( err ) {
 		console.log( 'err', err );
 		setClearCartProcessing(false);

@@ -23,7 +23,7 @@ export default function Home({ headerFooter, productsInitial, categories }) {
 
 	const [ seconds, setSeconds ] = useState(false)
 	const [ userIsInactive, setUserIsInactive ] = useState(false)
-	const maximumInactiveSeconds = 20
+	const maximumInactiveSeconds = 50
 
     const handleUserInactivity = () => {
 		setSeconds(0)

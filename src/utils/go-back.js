@@ -4,5 +4,8 @@ export const goBack = () => {
     if (orderNo !== null) {
         localStorage.setItem("ordenNo", orderNo)
     }
-    document.location.href = "index.html"
+
+    setTimeout(() => {
+        document.location.href = "index.html"
+    }, 600)
 }

@@ -157,8 +157,6 @@ export function printOrder(items, totalPrice) {
     }))
     message.items = finalItems
 
-    console.log(message);
-
     var printerPort = "PRINTERPORT1";
     var baudRate = message.baudRate;
     currencySymbol = message.currencySymbol;
@@ -848,7 +846,6 @@ function makeConcessionaireReceipt(message) {
 
 
 
-    console.log(receiptData);
     return receiptData;
 }
 
@@ -1778,9 +1775,6 @@ function setItemAlignedText(str_text, padding, space, isDigit, isCenter = false)
 }
 
 function setAllignedText(str_text, space, isDigit) {
-    
-    console.log(str_text)
-
     var txt = "";
     var line_flag = 0;
     var space_cnt = 0;
