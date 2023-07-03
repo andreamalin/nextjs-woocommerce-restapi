@@ -29,6 +29,8 @@
 
 body {
     overflow: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
 
@@ -103,6 +105,8 @@ body {
     margin: 3vw 2vw 0 2vw;
     width: 45%;
     
+    height: 51vw;
+    
     &:last-child {
         margin: 3vw 2vw 13vw 2vw;
     }
@@ -111,11 +115,13 @@ body {
 .max-h-75vh {
     max-height: 72vh;
     height: fit-content;
+    scroll-behavior: smooth;
 }
 
 .max-h-90vh {
     max-height: 90vh;
     height: fit-content;
+    scroll-behavior: smooth;
 }
 .vertical-nav-bg-90vh {
     min-height: 90vh;
@@ -141,7 +147,8 @@ body {
 .cart-items-layout {
     height: 75vh;
     overflow-y: scroll;
-
+    scroll-behavior: smooth;
+    
     .cart-bottom-layout {
         height: 15vh;
     }
@@ -253,6 +260,8 @@ body {
         width: 70%;
         overflow-x: scroll;
         overflow-y: hidden;
+        scroll-behavior: smooth;
+        
         display: flex;
         flex-direction: row;
         height: 13vh;

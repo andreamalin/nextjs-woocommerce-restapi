@@ -47,10 +47,23 @@ function addb2Apis(filePath) {
     const position = data.lastIndexOf('<head>');
 
     // Construct the new content with the added script tags
-    const updatedContent = data.slice(0, position) +
+    let updatedContent = data.slice(0, position) +
       '<script type="text/javascript" src="$B2BAPIS/b2bapis/b2bapis.js"></script>\n' +
       '<script type="text/javascript" src="$WEBAPIS/webapis/webapis.js"></script>\n' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />\n' +
       data.slice(position);
+
+      updatedContent = updatedContent.replace('<meta name="viewport" content="width=device-width"/>', '')
+
+    // Find the position to insert the new script tags
+    const position2 = updatedContent.lastIndexOf('</script>');
+    // Construct the new content with the added script tags
+    updatedContent = updatedContent.slice(0, position2) +
+      '</script><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>\n' +
+      '<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>\n' +
+      '<script> $(document).ready(function() { $("#scrollContainer").slimScroll({ height: "100%", railVisible: true, alwaysVisible: true, wheelStep: 20  }); }); </script>\n' +
+      updatedContent.slice(position2);
+
 
     // Write the updated content back to index.html
     fs.writeFile(filePath, updatedContent, 'utf8', (err) => {

@@ -21,7 +21,10 @@ const Products = ({ products, handleUserInactivity }) => {
 	}, [products])
 	
 	return (
-		<div ref={ref} onScroll={handleUserInactivity} className={`flex max-h-75vh flex-wrap flex-shrink-0 flex-grow-0 w-4/5 overflow-y-scroll ${totalQty > 0 ? "" : "max-h-90vh"}`}>
+		<div ref={ref} 
+		onScroll={handleUserInactivity} 
+		id="scrollContainer"
+		className={`flex max-h-75vh flex-wrap flex-shrink-0 flex-grow-0 w-4/5 overflow-y-scroll ${totalQty > 0 ? "" : "max-h-90vh"}`}>
 			
 			{ products.length ? products.map( product => {
 				return (

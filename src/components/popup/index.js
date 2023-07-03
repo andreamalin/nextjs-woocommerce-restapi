@@ -32,7 +32,7 @@ const PopUp = ({
                             <div className="order-container">
                                 <h3>Orden No.</h3>
                                 <h1>{ printerText[0] }</h1>
-                                <h6>Total:  { printerText[1]?.toFixed(2) }</h6>
+                                <h6>Total:  { printerText[1]?.toLocaleString() }</h6>
                             </div>
                         }
                         <div className={`image image-${icon}`} /> 

@@ -141,7 +141,7 @@ const CartItem = ( {
 						</div>
 						
 						{ updatingProduct ? <img className="cart-item-spinner" src="/cart-spinner.gif"  alt="spinner"/> : 
-						<span className="cart-total-price">{item?.currency}{item?.line_subtotal}</span> }
+						<span className="cart-total-price">{item?.currency}{item?.line_subtotal?.toLocaleString()}</span> }
 						
 					</footer>
 				</div>

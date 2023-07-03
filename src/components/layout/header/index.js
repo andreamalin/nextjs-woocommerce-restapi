@@ -53,7 +53,7 @@ const Header = ( { header } ) => {
 					{/*Cart Total*/ }
 					<div className="cart-right-layout">
 						<div className='total-price'>
-							Total({totalQty}): <span>{cartItems?.[0]?.currency ?? ''}{ totalPrice?.toFixed(2) }</span>
+							Total({totalQty}): <span>{cartItems?.[0]?.currency ?? ''}{ totalPrice?.toLocaleString() }</span>
 						</div>
 
 						{/*cart*/}
@@ -67,7 +67,7 @@ const Header = ( { header } ) => {
 							disabled={isClearCartProcessing}
 							className='cancel'
 						>
-							<span className="woo-next-cart">{!isClearCartProcessing ? "Cancelar" : "Cancelando..."}</span>
+							<span className="woo-next-cart">{!isClearCartProcessing ? "Cancelar orden" : "Cancelando..."}</span>
 						</button>
 					</div>
 				</div>

@@ -19,12 +19,22 @@ const CartItemsContainer = ({ handleUserInactivity, removeUserInactivity }) => {
 
 	const router = useRouter()
 
-	const handleCheckoutSteps = () => {
+	// Clear the entire cart.
+	const handleClearCart = async ( event ) => {
+		event.stopPropagation();
+		
+		if (isClearCartProcessing) {
+			return;
+		}
+		
+		await clearCart( setCart, setClearCartProcessing )
+	};
 
+	const handleCheckoutSteps = () => {
 		if (step == 1) {
 			return (
 				<PopUp 
-						quaternaryText={`Total a pagar: ${cartItems?.[0]?.currency ?? ''}${ totalPrice.toFixed(2) }`}
+						quaternaryText={`Total a pagar: ${cartItems?.[0]?.currency ?? ''}${ totalPrice?.toLocaleString() }`}
 						secondaryText="Selecciona el método de pago"
 						secondaryButtonText="Regresar"
 						secondaryButtonFunction={() => setStep(0)}
@@ -64,17 +74,6 @@ const CartItemsContainer = ({ handleUserInactivity, removeUserInactivity }) => {
 			return <></>
 		}
 	}
-	
-	// Clear the entire cart.
-	const handleClearCart = async ( event ) => {
-		event.stopPropagation();
-		
-		if (isClearCartProcessing) {
-			return;
-		}
-		
-		await clearCart( setCart, setClearCartProcessing )
-	};
 
 	const handleGoBack = () => {
 		router.back()
@@ -101,7 +100,7 @@ const CartItemsContainer = ({ handleUserInactivity, removeUserInactivity }) => {
 					{/*Cart Total*/ }
 					<div className="cart-bottom-layout">
 						<div className='total-price'>
-							Total({totalQty}): {cartItems?.[0]?.currency ?? ''}{ totalPrice?.toFixed(2) }
+							Total({totalQty}): {cartItems?.[0]?.currency ?? ''}{ totalPrice?.toLocaleString() }
 						</div>
 
 						<div className='buttons-cart-footer'>
@@ -118,7 +117,7 @@ const CartItemsContainer = ({ handleUserInactivity, removeUserInactivity }) => {
 									onClick={(event) => handleClearCart(event)}
 									disabled={isClearCartProcessing}
 								>
-									<span className="woo-next-cart">{!isClearCartProcessing ? "Cancelar" : "Cancelando..."}</span>
+									<span className="woo-next-cart">{!isClearCartProcessing ? "Cancelar orden" : "Cancelando..."}</span>
 								</button>
 							</div>
 							{/*Checkout*/}
